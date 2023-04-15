@@ -20,4 +20,9 @@ async function getCarts(){
     console.log(cartsData);
 }
 
-getCarts();
+getUsers();
+
+function calcDistance(lat1, lon1, lat2, lon2){
+    return Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371;
+}
+console.log(calcDistance(-37.3159, 81.1496, 40.3467, -30.1310))
