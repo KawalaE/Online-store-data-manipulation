@@ -5,6 +5,7 @@ const cartsUrl = "https://fakestoreapi.com/carts"
 let products;
 let carts;
 let users;
+let cartIndex;
 
 function calcDistance(lat1, lon1, lat2, lon2){
     return Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371;
@@ -60,32 +61,51 @@ function getCartInfo(num){
 function calcCartValue(){
     const cartNum = carts.length;
     const cartsValueArray = new Array();
-    const currentCart = getCartInfo(0);
-    console.log(currentCart)
-    let cartValue = 0;
-  
-    for(let i = 0; i < currentCart.length; i++){
-        const productPrice = products[currentCart[i][0]-1].price;
-        console.log(productPrice);
-        const productQuantity = currentCart[i][1];
-        cartValue += productPrice * productQuantity;
+    for(let j = 0; j < cartNum; j++){
+        const currentCart = getCartInfo(j);
+        let cartValue = 0;
+        for(let i = 0; i < currentCart.length; i++){
+            const productPrice = products[currentCart[i][0]-1].price;
+            const productQuantity = currentCart[i][1];
+            cartValue += productPrice * productQuantity;
     }
-    cartsValueArray.push(cartValue);
-    console.log(cartsValueArray);
-    console.log(cartValue);
+        cartsValueArray.push(cartValue);
+    }
+    
+    return cartsValueArray;
    
 }
 
-getProducts().then(()=>{
-    categoriesValue();
-}); 
-getUsers().then(()=>{
-    
-}); 
-getCarts().then(()=>{
-    calcCartValue()
-});
+function mostExpensiveCart(){
+    const cartValues = calcCartValue();
+    let maxPrice = 0;
+    for(let i = 0; i < cartValues.length; i++){
+        if (cartValues[i] > maxPrice){
+            maxPrice = cartValues[i];
+        }
+    }
+    cartIndex = cartValues.indexOf(maxPrice);
+    return `Most expensive cart ${maxPrice}`;
+}
 
-/*console.log(getCarts());
-console.log(getProducts());
-calcCartValue();*/
+
+function cartOwner(){
+    
+    const userName = users[cartIndex].name.firstname;
+    const userLastName = users[cartIndex].name.lastname;
+    return `${userName} ${userLastName}`
+}
+
+
+getProducts().then(()=>{
+    getUsers().then(()=>{
+        getCarts().then(()=>{
+            calcCartValue()
+            console.log(mostExpensiveCart())
+            console.log(cartOwner());
+            categoriesValue();
+        }); 
+    }); 
+}); 
+
+
