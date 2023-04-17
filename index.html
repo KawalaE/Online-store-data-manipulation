@@ -9,21 +9,41 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
     crossorigin=""/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight&display=swap" rel="stylesheet">    
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
      crossorigin=""></script>
 </head>
 <body>
     <script src="script.js" defer></script>
-    <h2>Store data raport</h2>
-    <p>Categories and their value</p>
-    <div id="category"></div>
-    <p>Cart with the highest value</p>
-    <div id="cart-val"></div>
-    <p>Owner of the most expensive cart</p>
-    <div id="cart-owner"></div>
-    <p>Clients who live the furthest away</p>
-    <div id="users"></div>
-    <div id="map"></div>
+    <div class="page">
+        <div class="page-content">
+            <p class="page-name">Store data raport</p>
+            <div class="line"></div>
+                <div>
+                    <p>Categories and their value</p>
+                    <div id="category"></div>
+                </div>
+                <div>
+                    <p>Cart with the highest value</p>
+                    <div id="cart-val"></div>
+                </div>
+                <div>
+                    <p>Owner of the most expensive cart</p>
+                    <div id="cart-owner"></div>
+                </div>
+                <div>
+                    <p>Clients who live the furthest away</p>
+                    <div id="users"></div>
+                </div>
+                <div class="leaflet">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 </body>
 </html>

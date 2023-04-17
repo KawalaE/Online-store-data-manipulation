@@ -6,7 +6,7 @@ let products;
 let carts;
 let users;
 let cartIndex;
-const map = L.map('map').setView([0, 0], 1);
+const map = L.map('map').setView([35, 0], 1);
 let categories = document.getElementById('category');
 let cartValueInfo = document.getElementById('cart-val');
 let cartOwnerInfo = document.getElementById('cart-owner');
@@ -25,6 +25,11 @@ async function getProducts(){
     const response = await fetch(productsUrl);
     products = await response.json();
 }
+async function getAllData(){
+    await Promise.all([getUsers(), getCarts(), getProducts()]);
+}
+
+
 function calcDistance(lat1, lon1, lat2, lon2){
     const radian = 57.2957795;
     lat1 /= radian;
@@ -53,8 +58,11 @@ function calcFurthestDistance(){
         }
     }
     let usersDistHTML = document.createElement('div');
-    usersDistHTML.textContent= `Max distance: ${maxDistance.toFixed(4)}km, Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`;
+    let userIdHTML = document.createElement('div');
+    usersDistHTML.textContent= `Max distance: ${maxDistance.toFixed(4)}km`;
+    userIdHTML.textContent = `Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`;
     usersInfo.appendChild(usersDistHTML);
+    usersInfo.appendChild(userIdHTML);
 
     console.log(`Max distance between users: ${maxDistance}km`);
     console.log(`Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`);
@@ -159,19 +167,18 @@ function cartOwner(){
 }
 
 drawMap();
-getProducts().then(()=>{
-    categoriesValue();
-    getUsers().then(()=>{
-        getCarts().then(()=>{
-            calcCartValue()
-            console.log(mostExpensiveCart())
-            console.log(cartOwner());
-            console.log(users);
-            calcFurthestDistance();
-            
-            
-        }); 
-    }); 
-}); 
+getAllData().then(()=>{
+    console.log('done')
+    categoriesValue();  
+    calcCartValue()
+    console.log(mostExpensiveCart())
+    console.log(cartOwner());
+    console.log(users);
+    calcFurthestDistance();
+})
 
+
+
+            
+            
 
