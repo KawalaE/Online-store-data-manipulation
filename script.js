@@ -28,7 +28,7 @@ async function getProducts(){
     const response = await fetch(productsUrl);
     products = await response.json();
 }
-/*Wait for all data to fetch*/
+/*Function that waits for all data to fetch*/
 async function getAllData(){
     await Promise.all([getUsers(), getCarts(), getProducts()]);
 }

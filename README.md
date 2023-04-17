@@ -1,11 +1,4 @@
-# Online-store-data-manipulation
-
 <h2><a href="https://kawalae.github.io/Online-store-data-manipulation/">Click here to view!</a></h2>
-
-<h2>Technologies used <h2>
-<img src="Pictures/soft-dev-icons/icons8-javascript.svg" alt="Java Script icon">
-<img src="Pictures/soft-dev-icons/icons8-html-5.svg" alt="HTML icon">
-<img src="Pictures/soft-dev-icons/icons8-css3.svg" alt="CSS icon">
 
 <h2>Project description</h2>
 
@@ -21,6 +14,11 @@ It performs following tasks:
 <div align='center'>
     <img src="Pictures/screen-1.png" alt="Full page screenshot.">
 </div>
+
+<h2>Technologies used <h2>
+<img src="Pictures/soft-dev-icons/icons8-javascript.svg" alt="Java Script icon">
+<img src="Pictures/soft-dev-icons/icons8-html-5.svg" alt="HTML icon">
+<img src="Pictures/soft-dev-icons/icons8-css3.svg" alt="CSS icon">
 
 <h2>Acknowledgements:</h2>
 <ul>
