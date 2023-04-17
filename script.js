@@ -6,7 +6,7 @@ let products;
 let carts;
 let users;
 let cartIndex;
-const map = L.map('map').setView([35, 0], 1);
+const map = L.map('map').setView([32, 0], 1);
 let categories = document.getElementById('category');
 let cartValueInfo = document.getElementById('cart-val');
 let cartOwnerInfo = document.getElementById('cart-owner');
@@ -59,12 +59,12 @@ function calcFurthestDistance(){
     }
     let usersDistHTML = document.createElement('div');
     let userIdHTML = document.createElement('div');
-    usersDistHTML.textContent= `Max distance: ${maxDistance.toFixed(4)}km`;
+    usersDistHTML.textContent= `Max distance: ${maxDistance.toFixed(2)}km`;
     userIdHTML.textContent = `Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`;
     usersInfo.appendChild(usersDistHTML);
     usersInfo.appendChild(userIdHTML);
 
-    console.log(`Max distance between users: ${maxDistance}km`);
+    console.log(`Max distance between users: ${maxDistance.toFixed(2)}km`);
     console.log(`Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`);
     drawMarkers(users[maxI].address.geolocation.lat,users[maxI].address.geolocation.long, users[maxI].name.firstname,
        users[maxI].name.lastname, users[maxJ].address.geolocation.lat, users[maxJ].address.geolocation.long, users[maxJ].name.firstname,users[maxJ].name.lastname);
@@ -72,7 +72,6 @@ function calcFurthestDistance(){
 }
 function capitalize(word){
     return  word.charAt(0).toUpperCase() + word.slice(1);
-
 }
 async function drawMap(){
 
@@ -105,20 +104,22 @@ function drawLine(lat1, lon1, lat2, lon2){
 }
 function categoriesValue(){
     const productCat = new Map;
-    for(let i = 0; i< products.length; i++){
+    for(let i = 0; i < products.length; i++){
         let currentCat = products[i].category;
-        let currentPrice = products[i].price;
+        let currentPrice = (products[i].price * products[i].rating.count);
+     
         if(!productCat.has(currentCat)){
             productCat.set(currentCat, currentPrice);
         }
         else {
-            let oldValue = productCat.get(currentCat) ;
+            let oldValue = productCat.get(currentCat);
             let newValue = oldValue + currentPrice;
             productCat.set(currentCat, newValue);
         }
     }
     for (const[key, value] of productCat){
         console.log(`${key}: ${value}`);
+
         let newPosition = document.createElement('div');
         newPosition.textContent = `${key}: ${value.toFixed(2)}$`;
         categories.appendChild(newPosition);
@@ -182,12 +183,13 @@ function cartOwner(){
 
 drawMap();
 getAllData().then(()=>{
-    console.log('done')
     categoriesValue();  
-    calcCartValue()
-    console.log(mostExpensiveCart())
+    calcCartValue();
+    console.log(mostExpensiveCart());
     console.log(cartOwner());
+    console.log(carts);
     console.log(users);
+    console.log(products);
     calcFurthestDistance();
 })
 
