@@ -1,5 +1,15 @@
 # Online-store-data-manipulation
 
+<p align ="justify">This application processed data from provided URL addresses.
+Its performs following tasks:
+<ol>
+    <li>Retrieves data about the user, the product, and the shopping cart.</li>
+    <li>Generates a Map data structure with all categories and their total value.</li>
+    <li>Determines who has the most valuable shopping cart and it's value.</li>
+    <li>Locates two users who live the farthest apart.</li>
+</ol> </p>
+<h2><a href="https://kawalae.github.io/Online-store-data-manipulation/">Click here to view!</a></h2>
+
 <h2>Technologies used: <h2>
 <img src="Pictures/soft-dev-icons/icons8-javascript.svg" alt="Java Script icon">
 <img src="Pictures/soft-dev-icons/icons8-html-5.svg" alt="HTML icon">
