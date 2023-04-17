@@ -6,7 +6,7 @@ let products;
 let carts;
 let users;
 let cartIndex;
-const map = L.map('map').setView([35, 0], 1);
+const map = L.map('map').setView([0, 0], 1);
 let categories = document.getElementById('category');
 let cartValueInfo = document.getElementById('cart-val');
 let cartOwnerInfo = document.getElementById('cart-owner');
@@ -68,6 +68,7 @@ function calcFurthestDistance(){
     console.log(`Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`);
     drawMarkers(users[maxI].address.geolocation.lat,users[maxI].address.geolocation.long, users[maxI].name.firstname,
        users[maxI].name.lastname, users[maxJ].address.geolocation.lat, users[maxJ].address.geolocation.long, users[maxJ].name.firstname,users[maxJ].name.lastname);
+    drawLine(users[maxI].address.geolocation.lat,users[maxI].address.geolocation.long,users[maxJ].address.geolocation.lat, users[maxJ].address.geolocation.long);
 }
 function capitalize(word){
     return  word.charAt(0).toUpperCase() + word.slice(1);
@@ -88,7 +89,19 @@ function drawMarkers(lat1, lon1, name1, last1, lat2, lon2, name2, last2){
     clientMarker1.bindPopup(`<b>${capitalize(name1)} ${capitalize(last1)}<b> <br>Latitude: ${lat1} Longitude: ${lon1}`).openPopup();
     clientMarker2.bindPopup(`<b>${capitalize(name2)} ${capitalize(last2)}<b> <br>Latitude: ${lat2} Longitude: ${lon2}`).openPopup();
 }
+function drawLine(lat1, lon1, lat2, lon2){
+    let pointA = new L.LatLng(lat1, lon1);
+    let pointB = new L.LatLng(lat2, lon2);
+    let pointArr = [pointA, pointB];
 
+    let line = new L.Polyline(pointArr, {
+        color: 'purple',
+        weight: 3,
+        opacity: 0.5,
+        smoothFactor: 1
+    });
+    line.addTo(map);
+}
 function categoriesValue(){
     const productCat = new Map;
     for(let i = 0; i< products.length; i++){

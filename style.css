@@ -60,3 +60,17 @@ p{
     border: 1.5px solid rgb(13, 13, 14);
     
 }
+.footer-elements{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: auto;
+    padding: 10px;
+}
+.footer{
+    color: blueviolet;
+}
+.footer-git:hover{
+    transform: rotate(180deg) scale(1.1);
+}
