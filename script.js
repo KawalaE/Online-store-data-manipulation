@@ -49,8 +49,27 @@ function calcFurthestDistance(){
     }
 
     console.log(`Max distance between users: ${maxDistance}km`);
-    console.log(`Users living furthest (ID's): ${users[0].id}, ${users[4].id}`);
+    console.log(`Users living furthest (ID's): ${users[maxI].id}, ${users[maxJ].id}`);
+    drawMap(users[maxI].address.geolocation.lat,users[maxI].address.geolocation.long, 
+        users[maxI].name.firstname,users[maxI].name.lastname, users[maxJ].address.geolocation.lat, users[maxJ].address.geolocation.long, users[maxJ].name.firstname, users[maxJ].name.lastname);
+}
+function capitalize(word){
+    return  word.charAt(0).toUpperCase() + word.slice(1);
 
+}
+
+function drawMap(lat1, lon1,name1,last1, lat2, lon2, name2, last2){
+    const map = L.map('map').setView([0, 0], 1);
+    
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    
+    let clientMarker1 = L.marker([lat1, lon1]).addTo(map);
+    clientMarker1.bindPopup(`<b>${capitalize(name1)} ${capitalize(last1)}<b> <br>Latitude: ${lat1} Longitude: ${lon1}`).openPopup();
+    let clientMarker2 = L.marker([lat2, lon2]).addTo(map);
+    clientMarker2.bindPopup(`<b>${capitalize(name2)} ${capitalize(last2)}<b> <br>Latitude: ${lat2} Longitude: ${lon2}`).openPopup();
 }
 function categoriesValue(){
     const productCat = new Map;
@@ -128,6 +147,7 @@ getProducts().then(()=>{
             console.log(users);
             calcFurthestDistance();
             categoriesValue();
+            
         }); 
     }); 
 }); 
