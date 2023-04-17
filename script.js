@@ -6,6 +6,7 @@ let products;
 let carts;
 let users;
 let cartIndex;
+
 const map = L.map('map').setView([32, 0], 1);
 let categories = document.getElementById('category');
 let cartValueInfo = document.getElementById('cart-val');
@@ -27,6 +28,7 @@ async function getProducts(){
     const response = await fetch(productsUrl);
     products = await response.json();
 }
+/*Wait for all data to fetch*/
 async function getAllData(){
     await Promise.all([getUsers(), getCarts(), getProducts()]);
 }
@@ -77,14 +79,12 @@ function capitalize(word){
 }
 
 async function drawMap(){
-
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-    
+    }).addTo(map);  
 }
-
+/*Create map with location markers*/
 function drawMarkers(lat1, lon1, name1, last1, lat2, lon2, name2, last2){
     let clientMarker1 = L.marker([lat1, lon1]).addTo(map);
     let clientMarker2 = L.marker([lat2, lon2]).addTo(map);
@@ -105,6 +105,7 @@ function drawLine(lat1, lon1, lat2, lon2){
     
     line.addTo(map);
 }
+/*Create Map data structure populated with categories and their total value*/
 function categoriesValue(){
     const productCat = new Map;
     for(let i = 0; i < products.length; i++){
@@ -140,7 +141,6 @@ function getCartInfo(num){
     return cartArr;
 }
 
-
 function calcCartValue(){
     const cartNum = carts.length;
     const cartsValueArray = new Array();
@@ -172,7 +172,6 @@ function mostExpensiveCart(){
     return `Most expensive cart ${maxPrice}`;
 }
 
-
 function cartOwner(){
     const userName = users[cartIndex].name.firstname;
     const userLastName = users[cartIndex].name.lastname;
@@ -181,7 +180,7 @@ function cartOwner(){
     cartOwnerInfo.appendChild(cartOwnerHTML);
     return `${userName} ${userLastName}`
 }
-
+/* When data is fetched invoke functions*/
 drawMap();
 getAllData().then(()=>{
     categoriesValue();  

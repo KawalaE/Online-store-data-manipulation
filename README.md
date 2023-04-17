@@ -1,6 +1,6 @@
 # Online-store-data-manipulation
 
-<h2><a href="https://kawalae.github.io/Online-store-data-manipulation/s">Click here to view!</a></h2>
+<h2><a href="https://kawalae.github.io/Online-store-data-manipulation/">Click here to view!</a></h2>
 
 <h2>Technologies used <h2>
 <img src="Pictures/soft-dev-icons/icons8-javascript.svg" alt="Java Script icon">
@@ -9,8 +9,8 @@
 
 <h2>Project description</h2>
 
-<p align ="justify">This application processed data from provided URL addresses.
-Its performs following tasks:
+<p align ="justify">This application processes fake online store data from provided URL addresses.
+It performs following tasks:
 <ol>
     <li>Retrieves data about the user, the product, and the shopping cart.</li>
     <li>Generates a Map data structure with all categories and their total value.</li>
