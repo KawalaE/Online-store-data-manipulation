@@ -17,7 +17,9 @@ Its performs following tasks:
 
 <h2>Project description</h2>
 
-<img src="Pictures/screen-1.png" alt="Full page screenshot.">
+<div align='center'>
+    <img src="Pictures/screen-1.png" alt="Full page screenshot.">
+</div>
 
 <h2>Acknowledgements:</h2>
 <ul>
