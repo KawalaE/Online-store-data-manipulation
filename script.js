@@ -15,7 +15,9 @@ let usersInfo = document.getElementById('users');
 async function getUsers(){
     const response = await fetch(usersUrl);
     users = await response.json();
+    return users;
 }
+
 async function getCarts(){
     const response = await fetch(cartsUrl);
     carts = await response.json();
@@ -29,7 +31,6 @@ async function getAllData(){
     await Promise.all([getUsers(), getCarts(), getProducts()]);
 }
 
-
 function calcDistance(lat1, lon1, lat2, lon2){
     const radian = 57.2957795;
     lat1 /= radian;
@@ -38,6 +39,7 @@ function calcDistance(lat1, lon1, lat2, lon2){
     lon2 /= radian;
     return Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(lon2-lon1))*6371;
 }
+
 
 function calcFurthestDistance(){
     let allUsersArray = new Array();
@@ -73,6 +75,7 @@ function calcFurthestDistance(){
 function capitalize(word){
     return  word.charAt(0).toUpperCase() + word.slice(1);
 }
+
 async function drawMap(){
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -121,11 +124,9 @@ function categoriesValue(){
         console.log(`${key}: ${value}`);
 
         let newPosition = document.createElement('div');
-        newPosition.textContent = `${key}: ${value.toFixed(2)}$`;
+        newPosition.textContent = `${capitalize(key)}: ${value.toFixed(2)}$`;
         categories.appendChild(newPosition);
-    }
-   
-    
+    }   
 }
 
 function getCartInfo(num){
