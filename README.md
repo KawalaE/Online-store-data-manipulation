@@ -8,13 +8,16 @@ Its performs following tasks:
     <li>Determines who has the most valuable shopping cart and it's value.</li>
     <li>Locates two users who live the farthest apart.</li>
 </ol> </p>
-<h2><a href="https://kawalae.github.io/Online-store-data-manipulation/">Click here to view!</a></h2>
+<h2><a href="https://kawalae.github.io/Online-store-data-manipulation/s">Click here to view!</a></h2>
 
 <h2>Technologies used: <h2>
 <img src="Pictures/soft-dev-icons/icons8-javascript.svg" alt="Java Script icon">
 <img src="Pictures/soft-dev-icons/icons8-html-5.svg" alt="HTML icon">
 <img src="Pictures/soft-dev-icons/icons8-css3.svg" alt="CSS icon">
 
+<h2>Project description</h2>
+
+<img src="Pictures/screen-1.png" alt="Full page screenshot.">
 
 <h2>Acknowledgements:</h2>
 <ul>
