@@ -6,7 +6,7 @@ let products;
 let carts;
 let users;
 let cartIndex;
-const map = L.map('map').setView([0, 0], 1);
+const map = L.map('map').setView([35, 0], 1);
 let categories = document.getElementById('category');
 let cartValueInfo = document.getElementById('cart-val');
 let cartOwnerInfo = document.getElementById('cart-owner');
@@ -86,8 +86,8 @@ async function drawMap(){
 function drawMarkers(lat1, lon1, name1, last1, lat2, lon2, name2, last2){
     let clientMarker1 = L.marker([lat1, lon1]).addTo(map);
     let clientMarker2 = L.marker([lat2, lon2]).addTo(map);
-    clientMarker1.bindPopup(`<b>${capitalize(name1)} ${capitalize(last1)}<b> <br>Latitude: ${lat1} Longitude: ${lon1}`).openPopup();
-    clientMarker2.bindPopup(`<b>${capitalize(name2)} ${capitalize(last2)}<b> <br>Latitude: ${lat2} Longitude: ${lon2}`).openPopup();
+    clientMarker1.bindPopup(`<b>${capitalize(name1)} ${capitalize(last1)}<b> <br>Latitude: ${lat1} Longitude: ${lon1}`, {closeOnClick: false, autoClose: false}).openPopup();
+    clientMarker2.bindPopup(`<b>${capitalize(name2)} ${capitalize(last2)}<b> <br>Latitude: ${lat2} Longitude: ${lon2}`, {closeOnClick: false, autoClose: false}).openPopup();
 }
 function drawLine(lat1, lon1, lat2, lon2){
     let pointA = new L.LatLng(lat1, lon1);
@@ -100,6 +100,7 @@ function drawLine(lat1, lon1, lat2, lon2){
         opacity: 0.5,
         smoothFactor: 1
     });
+    
     line.addTo(map);
 }
 function categoriesValue(){
